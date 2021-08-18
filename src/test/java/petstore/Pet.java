@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import static com.google.common.collect.Range.all;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static org.hamcrest.CoreMatchers.is;
 
 // 3 - Classe
 public class Pet {
@@ -43,6 +44,8 @@ public class Pet {
         .then() // Então
                 .log().all()
                 .statusCode(200)
+                .body("name",is("Max"))
+                .body("status", is("available"))
                 
         ;
 
