@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static com.google.common.collect.Range.all;
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 
 // 3 - Classe
 public class Pet {
@@ -41,8 +43,27 @@ public class Pet {
         .then() // Então
                 .log().all()
                 .statusCode(200)
+                
         ;
 
     }
+   // @Test
+    public void  consultarPet(){
+        String petId = "128796";
 
+        given()
+
+                .contentType("application/json")
+                .log().all()
+        .when()
+                .get(uri + "/" + petId)
+        .then()
+                .log().all()
+                .statusCode(200)
+
+
+        ;
+
+
+    }
 }
